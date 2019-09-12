@@ -63,7 +63,7 @@ public enum Direction {
      * @param y vertical component of direction vector
      * @return cardinal or ordinal direction corresponding to input vector
      */
-    public Direction getDirection(int x, int y) {
+    public static Direction getDirection(int x, int y) {
         return Arrays.stream(Direction.values())
                 .filter(d -> d.x == x && d.y == y)
                 .collect(Collectors.toList())

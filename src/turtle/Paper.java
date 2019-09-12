@@ -65,6 +65,17 @@ public class Paper {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        for (int j = 0; j < height; j++) {
+            sb.append(paper[0][j]);
+            for (int i = 1; i < width; i++) {
+                sb.append(' ').append(paper[i][j]);
+            }
+            sb.append('\n');
+        }
+        return sb.toString();
+
+        /* - wrong print (not represented correctly on screen, NORTH is seen as going EAST...)
+        StringBuilder sb = new StringBuilder();
         Arrays.stream(paper)
                 .forEach(ps ->
                         sb.append(  new String(ps).chars()
@@ -73,5 +84,6 @@ public class Paper {
                         ).append('\n')
                 );
         return sb.toString();
+        */
     }
 }
