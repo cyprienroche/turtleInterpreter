@@ -55,7 +55,17 @@ public class Paper {
      */
     public void mark(int x, int y, char c) {
         if (inBound(x, y)) {
-            paper[x][y] = c;
+            /*
+               [ [0,1] , [2,3] ] becomes:
+
+               [0,1]
+               [2,3] <- y height 1 for coordinates (0,1)
+                |
+                x horizontal position 0 for coordinates (0,1)
+
+            first determine height need (y), then move along (horizontal) to get position need (x)
+            */
+            paper[y][x] = c;
         }
     }
 
@@ -65,17 +75,6 @@ public class Paper {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int j = 0; j < height; j++) {
-            sb.append(paper[0][j]);
-            for (int i = 1; i < width; i++) {
-                sb.append(' ').append(paper[i][j]);
-            }
-            sb.append('\n');
-        }
-        return sb.toString();
-
-        /* - wrong print (not represented correctly on screen, NORTH is seen as going EAST...)
-        StringBuilder sb = new StringBuilder();
         Arrays.stream(paper)
                 .forEach(ps ->
                         sb.append(  new String(ps).chars()
@@ -84,6 +83,5 @@ public class Paper {
                         ).append('\n')
                 );
         return sb.toString();
-        */
     }
 }

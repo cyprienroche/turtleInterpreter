@@ -20,7 +20,7 @@ public class TurtleTest {
     }
 
     @Test
-    public void penDownTest() {
+    public void penDown2x2Test() {
         Paper paper = new Paper(2, 2);
         Turtle turtle = new Turtle(paper);
 
@@ -41,5 +41,24 @@ public class TurtleTest {
         turtle.rotateLeft(2);
         turtle.step(1);
         assertEquals(paper.toString(),". .\n. *\n");
+    }
+
+    @Test
+    public void penDown3x3Test() {
+        Paper paper = new Paper(3, 3);
+        Turtle turtle = new Turtle(paper);
+
+        turtle.penDown();
+        turtle.rotateLeft(1);
+        turtle.step(1);
+        assertEquals(paper.toString(), "*    \n     \n     \n");
+
+        turtle.rotateRight(4);
+        turtle.step(2);
+        assertEquals(paper.toString(), "*    \n  *  \n    *\n");
+
+        turtle.rotateRight(3);
+        turtle.step(10);
+        assertEquals(paper.toString(), "*    \n  *  \n* * *\n");
     }
 }
