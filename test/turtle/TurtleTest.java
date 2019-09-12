@@ -1,8 +1,8 @@
 package turtle;
 
 import org.junit.Test;
-import turtle.util.Direction;
-import turtle.util.Rotation;
+import turtle.implementations.AbstractTurtle;
+import turtle.implementations.NormalTurtle;
 
 import static org.junit.Assert.*;
 
@@ -13,7 +13,7 @@ public class TurtleTest {
         Paper paper = new Paper(2, 2);
         assertEquals(paper.toString(), "  \n  \n");
 
-        Turtle turtle = new Turtle(paper);
+        AbstractTurtle turtle = new NormalTurtle(paper);
         assertEquals(turtle.brush(), '*');
         turtle.step(1);
         assertEquals(paper.toString(), "  \n  \n");
@@ -22,7 +22,7 @@ public class TurtleTest {
     @Test
     public void penDown2x2Test() {
         Paper paper = new Paper(2, 2);
-        Turtle turtle = new Turtle(paper);
+        AbstractTurtle turtle = new NormalTurtle(paper);
 
         turtle.setBrush('.');
         turtle.penDown();
@@ -46,7 +46,7 @@ public class TurtleTest {
     @Test
     public void penDown3x3Test() {
         Paper paper = new Paper(3, 3);
-        Turtle turtle = new Turtle(paper);
+        AbstractTurtle turtle = new NormalTurtle(paper);
 
         turtle.penDown();
         turtle.rotateLeft(1);

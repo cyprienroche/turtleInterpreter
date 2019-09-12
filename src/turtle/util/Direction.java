@@ -77,4 +77,12 @@ public enum Direction {
     public int vertical() {
         return y;
     }
+
+    public Direction reflectY() {
+        return getDirection(x, -1 * y);
+    }
+
+    public Direction reflectX() {
+        return getDirection(-1 * x, y);
+    }
 }

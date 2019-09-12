@@ -21,6 +21,7 @@ public class Main {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
+
         Scanner scanner;
         PrintStream printStream;
 
@@ -40,5 +41,6 @@ public class Main {
 
         TurtleInterpreter interpreter = new TurtleInterpreter(scanner, printStream);
         interpreter.readAndProcess();
+
     }
 }
