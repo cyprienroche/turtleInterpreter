@@ -11,12 +11,12 @@ public class TurtleTest {
     @Test
     public void penUpTest() {
         Paper paper = new Paper(2, 2);
-        assertEquals(paper.toString(), "   \n   \n");
+        assertEquals(paper.toString(), "  \n  \n");
 
         Turtle turtle = new Turtle(paper);
         assertEquals(turtle.brush(), '*');
         turtle.step(1);
-        assertEquals(paper.toString(), "   \n   \n");
+        assertEquals(paper.toString(), "  \n  \n");
     }
 
     @Test
@@ -27,20 +27,20 @@ public class TurtleTest {
         turtle.setBrush('.');
         turtle.penDown();
         turtle.step(1);
-        assertEquals(paper.toString(), "  .\n   \n");
+        assertEquals(paper.toString(), " .\n  \n");
 
         turtle.rotateLeft(2);
         turtle.step(1);
-        assertEquals(paper.toString(),". .\n   \n");
+        assertEquals(paper.toString(),"..\n  \n");
 
         turtle.rotateLeft(2);
         turtle.step(1);
-        assertEquals(paper.toString(),". .\n.  \n");
+        assertEquals(paper.toString(),"..\n. \n");
 
         turtle.setBrush('*');
         turtle.rotateLeft(2);
         turtle.step(1);
-        assertEquals(paper.toString(),". .\n. *\n");
+        assertEquals(paper.toString(),"..\n.*\n");
     }
 
     @Test
@@ -51,14 +51,14 @@ public class TurtleTest {
         turtle.penDown();
         turtle.rotateLeft(1);
         turtle.step(1);
-        assertEquals(paper.toString(), "*    \n     \n     \n");
+        assertEquals(paper.toString(), "*  \n   \n   \n");
 
         turtle.rotateRight(4);
         turtle.step(2);
-        assertEquals(paper.toString(), "*    \n  *  \n    *\n");
+        assertEquals(paper.toString(), "*  \n * \n  *\n");
 
         turtle.rotateRight(3);
         turtle.step(10);
-        assertEquals(paper.toString(), "*    \n  *  \n* * *\n");
+        assertEquals(paper.toString(), "*  \n * \n***\n");
     }
 }

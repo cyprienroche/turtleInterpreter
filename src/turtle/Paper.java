@@ -1,6 +1,7 @@
 package turtle;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Paper {
@@ -13,13 +14,13 @@ public class Paper {
 
 
     /**
-     * @param width width of paper
+     * @param width  width of paper
      * @param height height of paper
      */
     public Paper(int width, int height) {
         this.width = width;
         this.height = height;
-        this.paper = new char[width][height];
+        this.paper = new char[height][width];
         Arrays.stream(paper).forEach(ps -> Arrays.fill(ps, ' '));
     }
 
@@ -50,16 +51,16 @@ public class Paper {
      * @param x horizontal component of coordinate to mark
      * @param y vertical component of coordinate to mark
      * @param c symbol used to mark the paper at the given coordinates
-     * Marks a given x, y location with a given char.
-     * If the position is not contained within the paper, does nothing.
+     *          Marks a given x, y location with a given char.
+     *          If the position is not contained within the paper, does nothing.
      */
     public void mark(int x, int y, char c) {
         if (inBound(x, y)) {
             /*
                [ [0,1] , [2,3] ] becomes:
 
-               [0,1]
-               [2,3] <- y height 1 for coordinates (0,1)
+               [2,3]
+               [0,1] <- y height 1 for coordinates (0,1)
                 |
                 x horizontal position 0 for coordinates (0,1)
 
@@ -74,14 +75,28 @@ public class Paper {
      */
     @Override
     public String toString() {
+        /* zero coordinate as bottom left */
+        StringBuilder sb = new StringBuilder();
+        for (int j = height - 1; j >= 0; j--) {
+            sb.append(paper[j][0]);
+            for (int i = 1; i < width; i++) {
+                sb.append(paper[j][i]);
+            }
+            sb.append('\n');
+        }
+        return sb.toString();
+
+        /* zero coordinate as top left:
+
         StringBuilder sb = new StringBuilder();
         Arrays.stream(paper)
                 .forEach(ps ->
                         sb.append(  new String(ps).chars()
                                     .mapToObj(c -> String.format("%c", c))
-                                    .collect(Collectors.joining(" "))
+                                    .collect(Collectors.joining())
                         ).append('\n')
                 );
         return sb.toString();
+         */
     }
 }

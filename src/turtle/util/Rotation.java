@@ -6,5 +6,7 @@ public enum Rotation {
      * can be either left (anticlockwise) or right (clockwise).
      */
     LEFT,
-    RIGHT,
+    RIGHT;
+
+    public static final int ROTATIONAL_UNIT = 45;
 }

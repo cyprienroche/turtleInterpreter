@@ -110,7 +110,7 @@ public class Turtle {
         while (n-- > 0) {
             int xOld = x, yOld = y;
             x += direction.horizontal();
-            y -= direction.vertical();
+            y += direction.vertical();
             edgeOfPaper(xOld, yOld);
             mark();
         }
