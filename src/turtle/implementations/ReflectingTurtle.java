@@ -1,7 +1,6 @@
 package turtle.implementations;
 
 import turtle.Paper;
-import turtle.util.Direction;
 
 public class ReflectingTurtle extends AbstractTurtle {
 
