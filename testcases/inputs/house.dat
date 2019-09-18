@@ -1,0 +1,25 @@
+paper 10 10
+
+new normal Leonardo 0 0
+pen Leonardo down
+pen Leonardo @
+
+move Leonardo 5
+right Leonardo 45
+move Leonardo 4
+right Leonardo 90
+move Leonardo 4
+right Leonardo 45
+move Leonardo 4
+right Leonardo 90
+move Leonardo 3
+right Leonardo 90
+move Leonardo 2
+left Leonardo 90
+move Leonardo 2
+left Leonardo 90
+move Leonardo 2
+right Leonardo 90
+move Leonardo 3
+
+show

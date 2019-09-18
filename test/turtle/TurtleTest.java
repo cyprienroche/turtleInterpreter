@@ -1,12 +1,19 @@
 package turtle;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 import turtle.implementations.AbstractTurtle;
 import turtle.implementations.NormalTurtle;
 
 import static org.junit.Assert.*;
+import static turtle.TestSuiteHelper.readFile;
+import static turtle.TestSuiteHelper.runMain;
 
 public class TurtleTest {
+
+    @Rule
+    public TemporaryFolder tmpFolder = new TemporaryFolder();
 
     @Test
     public void penUpTest() {
@@ -60,5 +67,11 @@ public class TurtleTest {
         turtle.rotateRight(3);
         turtle.step(10);
         assertEquals(paper.toString(), "*  \n * \n***\n");
+    }
+
+    @Test
+    public void house() {
+        assertEquals(readFile("testcases/outputs/house.res"),
+                runMain("testcases/inputs/house.dat", tmpFolder));
     }
 }
