@@ -33,54 +33,58 @@ public class TurtleInterpreter {
         while (scanner.hasNext()) {
             String s = scanner.nextLine();
             String[] command = s.split("\\s+");
-            switch (command[0]) {
-                case "paper":
-                    paper = new Paper(Integer.parseInt(command[1]), Integer.parseInt(command[2]));
+            processCommand(command);
+        }
+    }
+
+    private void processCommand(String[] command) {
+        switch (command[0]) {
+            case "paper":
+                paper = new Paper(Integer.parseInt(command[1]), Integer.parseInt(command[2]));
+                break;
+            case "new":
+                makeTurtle(command, "");
+                break;
+            case "pen":
+                if (!map.containsKey(command[1])) {
+                    invalidName();
                     break;
-                case "new":
-                    makeTurtle(command, "");
-                    break;
-                case "pen":
-                    if (!map.containsKey(command[1])) {
-                        invalidName();
+                }
+                switch (command[2]) {
+                    case "up":
+                        map.get(command[1]).penUp();
                         break;
-                    }
-                    switch (command[2]) {
-                        case "up":
-                            map.get(command[1]).penUp();
-                            break;
-                        case "down":
-                            map.get(command[1]).penDown();
-                            break;
-                        default:
-                            map.get(command[1]).setBrush(command[2].charAt(0));
-                    }
-                    break;
-                case "move":
-                    if (!map.containsKey(command[1])) {
-                        invalidName();
+                    case "down":
+                        map.get(command[1]).penDown();
                         break;
-                    }
-                    map.get(command[1]).step(Integer.parseInt(command[2]));
+                    default:
+                        map.get(command[1]).setBrush(command[2].charAt(0));
+                }
+                break;
+            case "move":
+                if (!map.containsKey(command[1])) {
+                    invalidName();
                     break;
-                case "right":
-                    if (!map.containsKey(command[1])) {
-                        invalidName();
-                        break;
-                    }
-                    map.get(command[1]).rotateRight(Integer.parseInt(command[2]) / Rotation.ROTATIONAL_UNIT);
+                }
+                map.get(command[1]).step(Integer.parseInt(command[2]));
+                break;
+            case "right":
+                if (!map.containsKey(command[1])) {
+                    invalidName();
                     break;
-                case "left":
-                    if (!map.containsKey(command[1])) {
-                        invalidName();
-                        break;
-                    }
-                    map.get(command[1]).rotateLeft(Integer.parseInt(command[2]) / Rotation.ROTATIONAL_UNIT);
+                }
+                map.get(command[1]).rotateRight(Integer.parseInt(command[2]) / Rotation.ROTATIONAL_UNIT);
+                break;
+            case "left":
+                if (!map.containsKey(command[1])) {
+                    invalidName();
                     break;
-                case "show":
-                    printStream.println(paper.toString());
-                    break;
-            }
+                }
+                map.get(command[1]).rotateLeft(Integer.parseInt(command[2]) / Rotation.ROTATIONAL_UNIT);
+                break;
+            case "show":
+                printStream.println(paper.toString());
+                break;
         }
     }
 
