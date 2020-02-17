@@ -29,61 +29,55 @@ public class TurtleInterpreter {
     }
 
     public void readAndProcess() {
-        boolean exit = false;
-        while (!exit && scanner.hasNext()) {
+        while (scanner.hasNext()) {
             try {
                 String s = scanner.nextLine();
                 String[] command = s.split("\\s+");
-                exit = processCommand(command);
+                if (command[0].equals("exit")) {
+                    break;
+                }
+                processCommand(command);
             } catch (Exception e) {
                 System.out.println("invalid command, try again");
             }
         }
     }
 
-    private boolean processCommand(String[] command) {
+    private void processCommand(String[] command) {
         switch (command[0]) {
             case "paper":
                 paper = new Paper(Integer.parseInt(command[1]), Integer.parseInt(command[2]));
-                break;
-            case "new":
-                makeTurtle(command, "");
-                break;
-            case "pen":
-                if (!map.containsKey(command[1])) {
-                    invalidName();
-                    break;
-                }
-                penCommand(command);
-                break;
-            case "move":
-                if (!map.containsKey(command[1])) {
-                    invalidName();
-                    break;
-                }
-                map.get(command[1]).step(Integer.parseInt(command[2]));
-                break;
-            case "right":
-                if (!map.containsKey(command[1])) {
-                    invalidName();
-                    break;
-                }
-                map.get(command[1]).rotateRight(Integer.parseInt(command[2]) / Rotation.ROTATIONAL_UNIT);
-                break;
-            case "left":
-                if (!map.containsKey(command[1])) {
-                    invalidName();
-                    break;
-                }
-                map.get(command[1]).rotateLeft(Integer.parseInt(command[2]) / Rotation.ROTATIONAL_UNIT);
-                break;
+                return;
             case "show":
                 printStream.println(paper.toString());
-                break;
-            case "exit":
-                return true;
+                return;
+            case "new":
+                makeTurtle(command, "");
+                return;
+            case "help":
+                help();
+                return;
         }
-        return false;
+        if (!map.containsKey(command[1])) {
+            invalidName();
+            return;
+        }
+        switch (command[0]) {
+            case "pen":
+                penCommand(command);
+                return;
+            case "move":
+                map.get(command[1]).step(Integer.parseInt(command[2]));
+                return;
+            case "right":
+                map.get(command[1]).rotateRight(Integer.parseInt(command[2]) / Rotation.ROTATIONAL_UNIT);
+                return;
+            case "left":
+                map.get(command[1]).rotateLeft(Integer.parseInt(command[2]) / Rotation.ROTATIONAL_UNIT);
+                return;
+            default:
+                throw new RuntimeException();
+        }
     }
 
     private void penCommand(String[] command) {
@@ -104,6 +98,19 @@ public class TurtleInterpreter {
         System.out.println(map.keySet().toString());
     }
 
+    private void help() {
+        System.out.println(
+                "Available commands:\n" +
+                        "exit\n" +
+                        "paper width height\n" +
+                        "new type name x y\n" +
+                        "pen name state\n" +
+                        "move name distance\n" +
+                        "right name angle\n" +
+                        "left name angle show\n" +
+                        "help"
+        );
+    }
 
     private Turtle makeTurtle(String[] command, String prefix) {
         Turtle turtle;
@@ -129,7 +136,10 @@ public class TurtleInterpreter {
                 continue;
             }
             if (!command[0].equals("new")) {
-                throw new RuntimeException("invalid command after cluster " + command[0] + command[1] + command[2]);
+                throw new RuntimeException("invalid command after cluster " +
+                        command[0] + " " +
+                        command[1] + " " +
+                        command[2]);
             }
             Turtle turtle = makeTurtle(command, prefix + name + ".");
             turtles[turtles.length - size] = turtle;
