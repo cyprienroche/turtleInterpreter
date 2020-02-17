@@ -80,8 +80,11 @@ Use System as first and second arguments to main to input and output using the c
 * **right** *name* *angle* - instruct the turtle named *name* to rotate *angle* degree clockwise. It is assumed that the *angle* parameter is a positive integer multiple of 45.
 * **left** *name* *angle* - instruct the turtle named *name* to rotate *angle* degree anticlockwise.
 * **show** - which will output the contents of the paper to the current output medium.
-* *type* - normal, continuous, bouncy, reflecting, wrapping
-* special case: **new** *cluster* *name* *size* - must then be followed immediately by *size* new turtles to be declared one after the other. For example: 
+
+*type* - normal, continuous, bouncy, reflecting, wrapping
+
+
+special case: **new** *cluster* *name* *size* - must then be followed immediately by *size* new turtles to be declared one after the other. For example: 
 
 ```
 paper 10 10
