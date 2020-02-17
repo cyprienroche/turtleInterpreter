@@ -57,6 +57,9 @@ public class TurtleInterpreter {
             case "help":
                 help();
                 return;
+            case "turtles":
+                printTurtles();
+                return;
         }
         if (!map.containsKey(command[1])) {
             invalidName();
@@ -100,15 +103,23 @@ public class TurtleInterpreter {
 
     private void help() {
         System.out.println(
-                "Available commands:\n" +
+                "\nAvailable commands:\n" +
                         "exit\n" +
+                        "help\n" +
+                        "turtles\n" +
                         "paper width height\n" +
                         "new type name x y\n" +
                         "pen name state\n" +
                         "move name distance\n" +
                         "right name angle\n" +
                         "left name angle show\n" +
-                        "help"
+                        "see README.md for more information"
+        );
+    }
+
+    private void printTurtles() {
+        map.forEach((name, turtle) -> System.out.println(
+                name + " - " + turtle.getClass().getSimpleName().toLowerCase().replace("turtle", ""))
         );
     }
 
