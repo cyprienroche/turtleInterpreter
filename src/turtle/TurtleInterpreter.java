@@ -21,7 +21,6 @@ public class TurtleInterpreter {
     //current paper
     private Paper paper;
 
-
     public TurtleInterpreter(Scanner scanner, PrintStream printStream) {
         this.scanner = scanner;
         this.printStream = printStream;
@@ -30,14 +29,19 @@ public class TurtleInterpreter {
     }
 
     public void readAndProcess() {
-        while (scanner.hasNext()) {
-            String s = scanner.nextLine();
-            String[] command = s.split("\\s+");
-            processCommand(command);
+        boolean exit = false;
+        while (scanner.hasNext() && !exit) {
+            try {
+                String s = scanner.nextLine();
+                String[] command = s.split("\\s+");
+                exit = processCommand(command);
+            } catch (Exception e) {
+                System.out.println("invalid command, try again");
+            }
         }
     }
 
-    private void processCommand(String[] command) {
+    private boolean processCommand(String[] command) {
         switch (command[0]) {
             case "paper":
                 paper = new Paper(Integer.parseInt(command[1]), Integer.parseInt(command[2]));
@@ -50,16 +54,7 @@ public class TurtleInterpreter {
                     invalidName();
                     break;
                 }
-                switch (command[2]) {
-                    case "up":
-                        map.get(command[1]).penUp();
-                        break;
-                    case "down":
-                        map.get(command[1]).penDown();
-                        break;
-                    default:
-                        map.get(command[1]).setBrush(command[2].charAt(0));
-                }
+                penCommand(command);
                 break;
             case "move":
                 if (!map.containsKey(command[1])) {
@@ -85,6 +80,22 @@ public class TurtleInterpreter {
             case "show":
                 printStream.println(paper.toString());
                 break;
+            case "exit":
+                return true;
+        }
+        return false;
+    }
+
+    private void penCommand(String[] command) {
+        switch (command[2]) {
+            case "up":
+                map.get(command[1]).penUp();
+                break;
+            case "down":
+                map.get(command[1]).penDown();
+                break;
+            default:
+                map.get(command[1]).setBrush(command[2].charAt(0));
         }
     }
 
