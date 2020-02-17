@@ -1,7 +1,6 @@
 package turtle;
 
 public interface Turtle {
-
     void penUp();
     void penDown();
     void setBrush(char c);

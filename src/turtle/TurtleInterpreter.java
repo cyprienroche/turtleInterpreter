@@ -45,12 +45,15 @@ public class TurtleInterpreter {
                         invalidName();
                         break;
                     }
-                    if (command[2].toLowerCase().equals("up")) {
-                        map.get(command[1]).penUp();
-                    } else if (command[2].toLowerCase().equals("down")) {
-                        map.get(command[1]).penDown();
-                    } else {
-                        map.get(command[1]).setBrush(command[2].charAt(0));
+                    switch (command[2]) {
+                        case "up":
+                            map.get(command[1]).penUp();
+                            break;
+                        case "down":
+                            map.get(command[1]).penDown();
+                            break;
+                        default:
+                            map.get(command[1]).setBrush(command[2].charAt(0));
                     }
                     break;
                 case "move":
@@ -65,16 +68,14 @@ public class TurtleInterpreter {
                         invalidName();
                         break;
                     }
-                    map.get(command[1])
-                            .rotateRight(Integer.parseInt(command[2]) / Rotation.ROTATIONAL_UNIT);
+                    map.get(command[1]).rotateRight(Integer.parseInt(command[2]) / Rotation.ROTATIONAL_UNIT);
                     break;
                 case "left":
                     if (!map.containsKey(command[1])) {
                         invalidName();
                         break;
                     }
-                    map.get(command[1])
-                            .rotateLeft(Integer.parseInt(command[2]) / Rotation.ROTATIONAL_UNIT);
+                    map.get(command[1]).rotateLeft(Integer.parseInt(command[2]) / Rotation.ROTATIONAL_UNIT);
                     break;
                 case "show":
                     printStream.println(paper.toString());
@@ -94,7 +95,11 @@ public class TurtleInterpreter {
         if (command[1].equals("cluster")) {
             turtle = makeCluster(command[2], Integer.parseInt(command[3]), prefix);
         } else {
-            turtle = makeAbstractTurtle(command[1].toLowerCase(), Integer.parseInt(command[3]), Integer.parseInt(command[4]));
+            turtle = makeAbstractTurtle(
+                    command[1].toLowerCase(),
+                    Integer.parseInt(command[3]),
+                    Integer.parseInt(command[4])
+            );
         }
         map.put(prefix + command[2], turtle);
         return turtle;
@@ -109,7 +114,7 @@ public class TurtleInterpreter {
                 continue;
             }
             if (!command[0].equals("new")) {
-                throw new RuntimeException("invalid command after cluster" + command[0] + command[1] + command[2]);
+                throw new RuntimeException("invalid command after cluster " + command[0] + command[1] + command[2]);
             }
             Turtle turtle = makeTurtle(command, prefix + name + ".");
             turtles[turtles.length - size] = turtle;
@@ -129,8 +134,8 @@ public class TurtleInterpreter {
             case "wrapping":
                 return new WrappingTurtle(x, y, paper);
             default:
-                  //normal
-                  return new NormalTurtle(x, y, paper);
+                //normal
+                return new NormalTurtle(x, y, paper);
         }
     }
 
