@@ -30,7 +30,7 @@ public class TurtleInterpreter {
 
     public void readAndProcess() {
         boolean exit = false;
-        while (scanner.hasNext() && !exit) {
+        while (!exit && scanner.hasNext()) {
             try {
                 String s = scanner.nextLine();
                 String[] command = s.split("\\s+");
