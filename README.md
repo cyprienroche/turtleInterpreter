@@ -74,6 +74,7 @@ Use System as first and second arguments to main to input and output using the c
 ## Commands
 
 * **exit** - exits the program.
+* **help** - displays available commands.
 * **paper** *width* *height* - creates a new blank paper with size *width* characters wide and *height* characters high.
 * **new** *type* *name* *x* *y* - creates a new turtle of a given *type* (see turtle types below). Will create a new turtle named *name*. The turtle will be placed at position (*x*,*y*) on the paper, where (0,0) is the bottom left corner. The default pen of the turtle is * and is up, turtle will be facing North.
 * **pen** *name* *state* - changes the state of the pen held by turtle *name*. *state* can either be **up** or **down** or a single *non-blank* character.
