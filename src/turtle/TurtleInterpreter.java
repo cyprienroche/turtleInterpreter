@@ -28,6 +28,7 @@ public class TurtleInterpreter {
         this.map = new HashMap<>();
     }
 
+    // read a command and process it
     public void readAndProcess() {
         while (scanner.hasNext()) {
             try {
@@ -43,6 +44,7 @@ public class TurtleInterpreter {
         }
     }
 
+    // process a command
     private void processCommand(String[] command) {
         switch (command[0]) {
             case "paper":
@@ -83,6 +85,7 @@ public class TurtleInterpreter {
         }
     }
 
+    // process a pen command
     private void penCommand(String[] command) {
         switch (command[2]) {
             case "up":
@@ -96,11 +99,13 @@ public class TurtleInterpreter {
         }
     }
 
+    // print message if invalid turtle name provided
     private void invalidName() {
         System.out.println("invalid turtle name, try one of:");
         System.out.println(map.keySet().toString());
     }
 
+    // print a list of available commands
     private void help() {
         System.out.println(
                 "\nAvailable commands:\n" +
@@ -117,12 +122,14 @@ public class TurtleInterpreter {
         );
     }
 
+    // print a list of turtles available for use
     private void printTurtles() {
         map.forEach((name, turtle) -> System.out.println(
                 name + " - " + turtle.getClass().getSimpleName().toLowerCase().replace("turtle", ""))
         );
     }
 
+    // Factory method to make turtles depending on command
     private Turtle makeTurtle(String[] command, String prefix) {
         Turtle turtle;
         if (command[1].equals("cluster")) {
@@ -138,6 +145,7 @@ public class TurtleInterpreter {
         return turtle;
     }
 
+    // make a cluster of turtles
     private Turtle makeCluster(String name, int size, String prefix) {
         String[] command;
         Turtle[] turtles = new Turtle[size];
@@ -159,6 +167,7 @@ public class TurtleInterpreter {
         return new ClusterTurtle(turtles);
     }
 
+    // Factory method to make turtles
     private Turtle makeAbstractTurtle(String type, int x, int y) {
         switch (type) {
             case "continuous":
