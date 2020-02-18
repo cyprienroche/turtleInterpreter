@@ -45,16 +45,19 @@ public class ClusterTurtle implements Turtle {
 
     @Override
     public int x() {
-        return 0;
+        return (int) Arrays.stream(turtles).mapToInt(Turtle::x).average().orElse(0);
     }
 
     @Override
     public int y() {
-        return 0;
+        return (int) Arrays.stream(turtles).mapToInt(Turtle::x).average().orElse(0);
     }
 
     @Override
     public Pen penState() {
-        return Pen.DOWN;
+        if (Arrays.stream(turtles).anyMatch(t -> t.penState() == Pen.DOWN)) {
+            return Pen.DOWN;
+        }
+        return Pen.UP;
     }
 }
