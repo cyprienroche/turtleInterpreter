@@ -121,7 +121,8 @@ public class TurtleInterpreter {
                         "pen name state\n" +
                         "move name distance\n" +
                         "right name angle\n" +
-                        "left name angle show\n" +
+                        "left name angle\n" +
+                        "show\n" +
                         "see README.md for more information"
         );
     }
