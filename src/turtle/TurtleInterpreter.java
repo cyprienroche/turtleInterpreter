@@ -105,7 +105,8 @@ public class TurtleInterpreter {
     // print message if invalid turtle name provided
     private void invalidName() {
         System.out.println("invalid turtle name, try one of:");
-        System.out.println(map.keySet().toString());
+        map.keySet().forEach(System.out::println);
+        System.out.println();
     }
 
     // print a list of available commands
