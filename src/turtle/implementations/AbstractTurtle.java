@@ -120,6 +120,11 @@ public abstract class AbstractTurtle implements Turtle {
         return y;
     }
 
+    @Override
+    public Pen penState() {
+        return pen;
+    }
+
     abstract void edgeOfPaper(int xOld, int yOld);
 
 }

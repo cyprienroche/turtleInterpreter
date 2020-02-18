@@ -94,6 +94,11 @@ public class TurtleInterpreter {
 
     // process a pen command
     private void penCommand(String[] command) {
+        if (command.length == 2) {
+            Turtle turtle = map.get(command[1]);
+            System.out.println(command[1] + " pen is " + turtle.penState());
+            return;
+        }
         switch (command[2]) {
             case "up":
                 map.get(command[1]).penUp();

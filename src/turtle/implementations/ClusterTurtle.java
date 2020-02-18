@@ -1,6 +1,7 @@
 package turtle.implementations;
 
 import turtle.Turtle;
+import turtle.util.Pen;
 
 import java.util.Arrays;
 
@@ -52,4 +53,8 @@ public class ClusterTurtle implements Turtle {
         return 0;
     }
 
+    @Override
+    public Pen penState() {
+        return Pen.DOWN;
+    }
 }

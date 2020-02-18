@@ -1,5 +1,7 @@
 package turtle;
 
+import turtle.util.Pen;
+
 public interface Turtle {
     void penUp();
     void penDown();
@@ -9,4 +11,5 @@ public interface Turtle {
     void step(int n);
     int x();
     int y();
+    Pen penState();
 }
