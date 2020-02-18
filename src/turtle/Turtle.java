@@ -7,4 +7,6 @@ public interface Turtle {
     void rotateRight(int n);
     void rotateLeft(int n);
     void step(int n);
+    int x();
+    int y();
 }

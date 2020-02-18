@@ -42,4 +42,14 @@ public class ClusterTurtle implements Turtle {
         Arrays.stream(turtles).forEach(t -> t.step(n));
     }
 
+    @Override
+    public int x() {
+        return 0;
+    }
+
+    @Override
+    public int y() {
+        return 0;
+    }
+
 }

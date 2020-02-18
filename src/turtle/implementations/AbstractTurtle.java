@@ -110,6 +110,16 @@ public abstract class AbstractTurtle implements Turtle {
         }
     }
 
+    @Override
+    public int x() {
+        return x;
+    }
+
+    @Override
+    public int y() {
+        return y;
+    }
+
     abstract void edgeOfPaper(int xOld, int yOld);
 
 }
