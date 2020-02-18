@@ -37,6 +37,9 @@ public class TurtleInterpreter {
                 if (command[0].equals("exit")) {
                     break;
                 }
+                if (command[0].equals("")) {
+                    continue;
+                }
                 processCommand(command);
             } catch (Exception e) {
                 System.out.println("invalid command, try again");
@@ -170,6 +173,8 @@ public class TurtleInterpreter {
     // Factory method to make turtles
     private Turtle makeAbstractTurtle(String type, int x, int y) {
         switch (type) {
+            case "normal":
+                return new NormalTurtle(x, y, paper);
             case "continuous":
                 return new ContinuousTurtle(x, y, paper);
             case "bouncy":
@@ -179,9 +184,21 @@ public class TurtleInterpreter {
             case "wrapping":
                 return new WrappingTurtle(x, y, paper);
             default:
-                //normal
-                return new NormalTurtle(x, y, paper);
+                //something else
+                printPossibleTurtles();
+                return null;
         }
+    }
+
+    private void printPossibleTurtles() {
+        System.out.println(
+                "invalid turtle type. Try one of:\n" +
+                "normal\n" +
+                "continuous" +
+                "bouncy" +
+                "reflecting" +
+                "wrapping"
+        );
     }
 
 
