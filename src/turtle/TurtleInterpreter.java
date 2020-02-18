@@ -194,10 +194,10 @@ public class TurtleInterpreter {
         System.out.println(
                 "invalid turtle type. Try one of:\n" +
                 "normal\n" +
-                "continuous" +
-                "bouncy" +
-                "reflecting" +
-                "wrapping"
+                "continuous\n" +
+                "bouncy\n" +
+                "reflecting\n" +
+                "wrapping\n"
         );
     }
 
