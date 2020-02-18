@@ -84,8 +84,8 @@ public class TurtleInterpreter {
                 map.get(command[1]).rotateLeft(Integer.parseInt(command[2]) / Rotation.ROTATIONAL_UNIT);
                 return;
             case "where":
-                Turtle turtle = map.get(command[2]);
-                System.out.println(command[2] + " is at position: x=" + turtle.x() + ", y=" + turtle.y());
+                Turtle turtle = map.get(command[1]);
+                System.out.println(command[1] + " is at position: x=" + turtle.x() + ", y=" + turtle.y());
                 return;
             default:
                 throw new RuntimeException();
