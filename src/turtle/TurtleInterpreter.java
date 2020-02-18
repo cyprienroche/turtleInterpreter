@@ -140,11 +140,12 @@ public class TurtleInterpreter {
         if (command[1].equals("cluster")) {
             turtle = makeCluster(command[2], Integer.parseInt(command[3]), prefix);
         } else {
-            turtle = makeAbstractTurtle(
-                    command[1].toLowerCase(),
-                    Integer.parseInt(command[3]),
-                    Integer.parseInt(command[4])
-            );
+            int x = Integer.parseInt(command[3]);
+            int y = Integer.parseInt(command[4]);
+            if (!paper.inBound(x, y)) {
+                System.out.println("Warning, turtle created is out of bound.\n");
+            }
+            turtle = makeAbstractTurtle(command[1].toLowerCase(), x, y);
         }
         map.put(prefix + command[2], turtle);
         return turtle;
@@ -195,11 +196,11 @@ public class TurtleInterpreter {
     private void printPossibleTurtles() {
         System.out.println(
                 "invalid turtle type. Try one of:\n" +
-                "normal\n" +
-                "continuous\n" +
-                "bouncy\n" +
-                "reflecting\n" +
-                "wrapping\n"
+                        "normal\n" +
+                        "continuous\n" +
+                        "bouncy\n" +
+                        "reflecting\n" +
+                        "wrapping\n"
         );
     }
 
